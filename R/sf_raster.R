@@ -31,3 +31,21 @@ convert_df_to_sf_obj <- function (df, crs_num_or_str = 4326) {
   df_sf = df %>% st_as_sf(coords = c("lon", "lat"), crs = crs_num_or_str)
   return (df_sf)
 }
+
+
+#' Crop sf object by rectangle
+#'
+#' @param sf_obj sf object to be cropped
+#' @param xmin x (or lon) min
+#' @param xmax x (or lon) max
+#' @param ymin y (or lat) min
+#' @param ymax y (or lat) max
+#'
+#' @return cropped sf object
+#' @export
+#'
+#' @examples
+crop_sf_obj_by_rect_bb <- function(sf_obj, xmin, xmax, ymin, ymax) {
+  cropped  = st_crop(sf_obj, c(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax))
+  return (cropped)
+}

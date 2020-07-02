@@ -23,3 +23,6 @@ cropped sf object
 \description{
 Crop sf object by rectangle
 }
+\examples{
+crop_sf_obj_by_rect_bb (sf_obj, xmin, xmax, ymin, ymax)
+}

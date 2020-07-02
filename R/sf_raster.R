@@ -49,3 +49,18 @@ crop_sf_obj_by_rect_bb <- function(sf_obj, xmin, xmax, ymin, ymax) {
   cropped  = st_crop(sf_obj, c(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax))
   return (cropped)
 }
+
+
+#' Crop sf obj by polygon
+#'
+#' @param sf_obj sf object to be cropped
+#' @param polygon_mask polygon mask
+#'
+#' @return cropped sf object
+#' @export
+#'
+#' @examples crop_sf_obj_by_polygon_mask (sf_obj, polygon_mask)
+crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
+  cropped  = st_crop(sf_obj, st_bbox(polygon_mask))
+  return (cropped)
+}

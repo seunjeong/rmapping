@@ -17,7 +17,7 @@ install_github ('seunjeong/rmapping')
 ```
 
 ## Some Tricks for ggplot2
-![](./figures/legend_box_outline_control.png)
+![http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/](./figures/legend_box_outline_control.png)
 
 ## Useful Resources for R Plot General
 

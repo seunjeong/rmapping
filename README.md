@@ -1,24 +1,27 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-# rmapping
+rmapping
+========
 
 <!-- badges: start -->
-
 <!-- badges: end -->
-
 The goal of rmapping is to provide small but useful function to make
 mapping in R easy.
 
-## Installation
+Installation
+------------
 
-``` r
-install_github ('seunjeong/rmapping')
-```
+    install_github ('seunjeong/rmapping')
 
-## Some Tricks for ggplot2
-![http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/](./figures/legend_box_outline_control.png)
+Some Tricks for ggplot2
+-----------------------
 
-## Useful Resources for R Plot General
+How to control the outline for the discrete legend. ![Control
+legend](./figures/legend_box_outline_control.png)
 
-<http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/>
+Source:
+<a href="http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/</a>
+
+Useful Resources for R Plot General
+-----------------------------------
+
+<a href="http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/" class="uri">http://www.cookbook-r.com/Graphs/Legends_(ggplot2)/</a>

@@ -11,8 +11,9 @@ output: md_document
 
 <!-- badges: end -->
 
-The goal of rmapping is to provide small but useful function to make
-mapping in R easy.
+These are a collection of functions that are used repeatedly but easily
+forgotten. To be explicit, the names of the functions are often long but
+should be clear about what each of them does. Most of the functions are intended for mapping and heavily dependent on `ggplot2`. 
 
 ## Installation
 

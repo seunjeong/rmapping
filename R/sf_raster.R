@@ -44,7 +44,7 @@ convert_df_to_sf_obj <- function (df, crs_num_or_str = 4326) {
 #' @return cropped sf object
 #' @export
 #'
-#' @examples
+#' @examples crop_sf_obj_by_rect_bb (sf_obj, xmin, xmax, ymin, ymax)
 crop_sf_obj_by_rect_bb <- function(sf_obj, xmin, xmax, ymin, ymax) {
   cropped  = st_crop(sf_obj, c(xmin=xmin, xmax=xmax, ymin=ymin, ymax=ymax))
   return (cropped)

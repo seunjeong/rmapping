@@ -7,6 +7,7 @@ require(ncdf4)
 #'
 #' @return
 #' @export
+#' @examples get_ncdf_var (ncin, var_name)
 get_ncdf_var <- function (ncin, var_name) {
   if (class(ncin) != "ncdf4") {
     ncin <- nc_open(ncin)

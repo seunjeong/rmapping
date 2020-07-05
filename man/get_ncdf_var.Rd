@@ -7,7 +7,9 @@
 get_ncdf_var(ncin, var_name)
 }
 \arguments{
-\item{var_name}{}
+\item{ncin}{string or ncdf4 object}
+
+\item{var_name}{variable name of type string.}
 }
 \value{
 

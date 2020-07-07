@@ -1,6 +1,6 @@
-require(USAboundaries)
-require(USAboundariesData)
-require(dplyr)
+library(USAboundaries)
+library(USAboundariesData)
+library(dplyr)
 
 #' Get US Zip Code boundaries in sf object
 #'

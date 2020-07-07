@@ -9,7 +9,9 @@ list_to_pivot_longer(li, names_of_list, col_name_to_add)
 \arguments{
 \item{li}{a list with different lengths for each element of the list}
 
-\item{col_name_to_add}{}
+\item{name_for_list_names}{name for the names of the (original) list}
+
+\item{name_for_value}{the column name for added values}
 }
 \value{
 

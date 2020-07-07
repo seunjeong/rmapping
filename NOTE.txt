@@ -1,0 +1,1 @@
+NOTE: Before committing, make sure there is the function name in the "NAMESPACE". This is done probably by compiling from RStudio locally or giving the function name to "export".

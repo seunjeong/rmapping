@@ -1,6 +1,7 @@
-library(USAboundaries)
-library(USAboundariesData)
-library(dplyr)
+require(USAboundaries)
+require(USAboundariesData)
+require(dplyr)
+require(sf)
 
 #' Get US Zip Code boundaries in sf object
 #'
@@ -11,6 +12,6 @@ library(dplyr)
 #'
 #' @examples
 get_us_zipcode <- function (epsg_num = 4326) {
-  zip = us_zipcodes() %>% st_transform(crs=epsg_num)
+  zip = USAboundaries::us_zipcodes() %>% sf::st_transform(crs=epsg_num)
   return (zip)
 }

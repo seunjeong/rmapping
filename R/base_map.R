@@ -1,4 +1,6 @@
 require(USAboundaries)
+require(USAboundariesData)
+require(dplyr)
 
 #' Get US Zip Code boundaries in sf object
 #'

@@ -138,3 +138,32 @@ regrid_using_resample <- function (r, r_new_grid, method ='ngb') {
   return (r_on_new_grid)
 }
 
+#' Make raster template for regridding
+#'
+#' @param x_min the minimum X or lon (not center of the grid cell)
+#' @param x_max the maximum X or lon (not center of the grid cell)
+#' @param y_min the minimum Y or lat (not center of the grid cell)
+#' @param y_max the maximum Y or lat (not center of the grid cell)
+#' @param res spatial resolution in degrees. Assumes X and Y should have the same resolution.
+#'
+#' @return make raster template for regridding for any grids
+#' @export make_raster_template
+#' @import raster
+#' @import sp
+#' @examples
+make_raster_template <- function(x_min, x_max, y_min, y_max, res) {
+  xlon = seq(x_min, x_max, res)
+  ylat = seq(y_min, y_max, res)
+
+  dom_lonlat_r = expand.grid(xlon, ylat)
+  names (dom_lonlat_r) = c('lon', 'lat')
+
+  coordinates(dom_lonlat_r) = ~lon+lat
+  # create an empty raster object to the extent of the points
+  rast <- raster(ext=extent(dom_lonlat_r), resolution=res)
+
+  rast_coord = coordinates(rast)
+
+  return(rast)
+
+}

@@ -69,7 +69,8 @@ crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
 #' Plot raster object using ggspatial
 #'
 #' @param r raster object
-#'
+#' @param value_trans (from ggplot2 doc) For continuous scales, the name of a transformation object or the object itself. Built-in transformations include "asn", "atanh", "boxcox", "date", "exp", "hms", "identity", "log", "log10", "log1p", "log2", "logit", "modulus", "probability", "probit", "pseudo_log", "reciprocal", "reverse", "sqrt" and "time".
+#' @param  breaks breaks for values
 #' @return
 #' @export plot_raster_layer_spatial
 #' @import ggplot2
@@ -77,9 +78,53 @@ crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
 #' @import viridis
 #' @examples
 #'
-plot_raster_layer_spatial <- function (r) {
+plot_raster_layer_spatial <- function (r, value_trans = 'identity', breaks = NULL) {
 
   # Use na.value = 'NA' to remove gray color at the border.
-  p = ggplot () + layer_spatial (r) + scale_fill_viridis (na.value = 'NA')
+  p = ggplot () + layer_spatial (r) +
+      scale_fill_viridis (na.value = 'NA', trans = value_trans, breaks = breaks)
   return (p)
 }
+
+#' Convert data frame with xyz information to raster object.
+#'
+#' @param df data frame with x, y, z information
+#' @param col_to_rasterize the column name for "z"
+#'
+#' @return
+#' @export convert_df_xyz_to_raster
+#' @import raster
+#' @import dplyr
+#' @examples
+convert_df_xyz_to_raster <- function (df, col_to_rasterize) {
+  if ('x' %in% names (df) & 'y' %in% names (df)) {
+    sel_col = c('x', 'y', col_to_rasterize)
+  } else if ('lon' %in% names (df) & 'lon' %in% names (df)) {
+    sel_col = c('lon', 'lat', col_to_rasterize)
+  } else stop ('Check x/y or lon/lat in the data frame')
+
+
+  df = df %>% dplyr::select (one_of (sel_col))
+
+  #df = df %>% dplyr::arrange (desc (lat))
+
+  r = rst <- rasterFromXYZ(df)
+}
+
+
+
+#' Regrid raster object using the resample function of the raster package
+#'
+#' @param r Raster* object to be regridded
+#' @param r_new_grid Raster* object with parameters that r should be resampled to
+#' @param method sampling method. If the two (in & out) grids are similar in resolution, use 'ngb'. The other option is 'bilinear'
+#'
+#' @return
+#' @export regrid_using_resample
+#' @import raster
+#' @examples
+regrid_using_resample <- function (r, r_new_grid, method ='ngb') {
+  r_on_new_grid <- resample(r, r_new_grid, method = method)
+  return (r_on_new_grid)
+}
+

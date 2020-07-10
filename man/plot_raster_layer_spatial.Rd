@@ -4,10 +4,14 @@
 \alias{plot_raster_layer_spatial}
 \title{Plot raster object using ggspatial}
 \usage{
-plot_raster_layer_spatial(r)
+plot_raster_layer_spatial(r, value_trans = "identity", breaks = NULL)
 }
 \arguments{
 \item{r}{raster object}
+
+\item{value_trans}{(from ggplot2 doc) For continuous scales, the name of a transformation object or the object itself. Built-in transformations include "asn", "atanh", "boxcox", "date", "exp", "hms", "identity", "log", "log10", "log1p", "log2", "logit", "modulus", "probability", "probit", "pseudo_log", "reciprocal", "reverse", "sqrt" and "time".}
+
+\item{breaks}{breaks for values}
 }
 \value{
 

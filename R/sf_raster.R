@@ -81,8 +81,13 @@ crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
 plot_raster_layer_spatial <- function (r, value_trans = 'identity', breaks = NULL) {
 
   # Use na.value = 'NA' to remove gray color at the border.
-  p = ggplot () + layer_spatial (r) +
+  p = ggplot () + layer_spatial (r)
+
+  if (is.null(breaks)) {
+      scale_fill_viridis (na.value = 'NA', trans = value_trans)
+  } else {
       scale_fill_viridis (na.value = 'NA', trans = value_trans, breaks = breaks)
+  }
   return (p)
 }
 

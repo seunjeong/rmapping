@@ -64,3 +64,20 @@ crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
   cropped  = st_crop(sf_obj, st_bbox(polygon_mask))
   return (cropped)
 }
+
+
+#' Plot raster object using ggspatial
+#'
+#' @param r raster object
+#'
+#' @return
+#' @export plot_raster_layer_spatial
+#' @import ggplot2 ggspatial
+#' @examples
+#'
+plot_raster_layer_spatial <- function (r) {
+
+  # Use na.value = 'NA' to remove gray color at the border.
+  p = ggplot () + layer_spatial (r) + scale_fill_viridis (na.value = 'NA')
+  return (p)
+}

@@ -76,6 +76,7 @@ crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
 #' @import ggplot2
 #' @import ggspatial
 #' @import viridis
+#' @import sf
 #' @examples
 #'
 plot_raster_layer_spatial <- function (r, value_trans = 'identity', breaks = NULL) {
@@ -88,6 +89,10 @@ plot_raster_layer_spatial <- function (r, value_trans = 'identity', breaks = NUL
   } else {
       p = p + scale_fill_viridis (na.value = 'NA', trans = value_trans, breaks = breaks)
   }
+
+  p = p + theme_minimal() +
+          coord_sf (expand=F)
+
   return (p)
 }
 

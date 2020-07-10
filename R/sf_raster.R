@@ -84,9 +84,9 @@ plot_raster_layer_spatial <- function (r, value_trans = 'identity', breaks = NUL
   p = ggplot () + layer_spatial (r)
 
   if (is.null(breaks)) {
-      scale_fill_viridis (na.value = 'NA', trans = value_trans)
+      p = p + scale_fill_viridis (na.value = 'NA', trans = value_trans)
   } else {
-      scale_fill_viridis (na.value = 'NA', trans = value_trans, breaks = breaks)
+      p = p + scale_fill_viridis (na.value = 'NA', trans = value_trans, breaks = breaks)
   }
   return (p)
 }

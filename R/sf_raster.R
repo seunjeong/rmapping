@@ -72,7 +72,9 @@ crop_sf_obj_by_polygon_mask <- function(sf_obj, polygon_mask) {
 #'
 #' @return
 #' @export plot_raster_layer_spatial
-#' @import ggplot2 ggspatial
+#' @import ggplot2
+#' @import ggspatial
+#' @import viridis
 #' @examples
 #'
 plot_raster_layer_spatial <- function (r) {

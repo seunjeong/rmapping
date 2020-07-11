@@ -240,3 +240,45 @@ check_if_regular_grid <-function (df, res, digits = 5) {
 
   return (TRUE)
 }
+
+
+#' Add area in km^2 to data frame with spatial information (lon/lat or X/Y)
+#'
+#' @param df data frame with spatial information (lon/lat or X/Y)
+#'
+#' @return
+#' @export add_area_km2_to_spatial_df
+#' @import dplyr
+#' @import assertthat
+#' @examples
+add_area_km2_to_spatial_df <- function (df) {
+  assert_that('lon' %in% names (df))
+  assert_that("lat" %in% names(df))
+
+  plon <- sort (unique(df$lon))
+  plat <- sort(unique(df$lat))
+
+  dom_lonlat <- expand.grid(plon, plat)
+  names(dom_lonlat) <- c("lon", "lat")
+
+  cellarea <- expand.grid(rep(mean(diff(plon)), length(plon)), c(diff(plat)[1], diff(plat)))
+  dom_lonlat$area_km2 <- cellarea[, 1] * cellarea[, 2] * cos(dom_lonlat[, 2] * pi / 180) * (6375 * pi / 180)^2
+  names(dom_lonlat)
+
+  # ===============================================================================
+  # Join
+  # ===============================================================================
+  df$lon_int = as.integer (df$lon * 10000)
+  df$lat_int <- as.integer(df$lat * 10000)
+
+  dom_lonlat$lon_int = as.integer(dom_lonlat$lon * 10000)
+  dom_lonlat$lat_int <- as.integer(dom_lonlat$lat * 10000)
+
+  dom_lonlat$lon = NULL
+  dom_lonlat$lat <- NULL
+
+  df_join = left_join (df, dom_lonlat, by = c('lon_int', 'lat_int'))
+  assert_that (nrow(df_join) == nrow(df))
+  assert_that (sum(is.na(df_join$area_km2)) == 0)
+  return (df_join)
+}

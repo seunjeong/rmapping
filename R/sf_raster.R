@@ -252,6 +252,9 @@ check_if_regular_grid <-function (df, res, digits = 5) {
 #' @import assertthat
 #' @examples
 add_area_km2_to_spatial_df <- function (df) {
+
+  check_if_regular_grid (df)
+
   assert_that('lon' %in% names (df))
   assert_that("lat" %in% names(df))
 

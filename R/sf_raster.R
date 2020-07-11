@@ -167,3 +167,76 @@ make_raster_template <- function(x_min, x_max, y_min, y_max, res) {
   return(rast)
 
 }
+
+
+#' Check if the data frame is on a regular (regularly spaced in X/Y) grid
+#'
+#' @param df data frame with X/Y or lon/lat information
+#' @param res the spatial resolution of df
+#' @param digits (from rasterFromXYZ) numeric, indicating the requested precision for detecting whether points are on a regular grid (a low number of digits is a low precision)
+#'
+#' @return TRUE if on a regular grid
+#' @export check_if_regular_grid
+#' @import raster
+#' @note Adapted from raster::rasterFromXYZ
+#' @examples
+check_if_regular_grid <-function (df, res, digits = 5) {
+
+  # Note: change to regular data.frame
+  if (inherits (df, 'tbl') | inherits (df, 'tbl_df')) {
+    df = data.frame (df)
+  }
+
+  if ('x' == names (df)[1] & 'y' == names (df)[2]) {
+    cat ('coords are in x,y \n')
+  } else if ('lon' == names (df)[1] & 'lon' == names (df)[2]) {
+    cat ('coords are in lon, lat \n')
+  } else stop ('Check x/y or lon/lat in the data frame')
+
+  x <- sort(unique(df[, 1]))
+
+  dx <- x[-1] - x[-length(x)]
+  if (is.na(res[1])) {
+    rx <- min(dx)
+    for (i in 1:5) {
+      rx <- rx/i
+      q <- sum(round(dx/rx, digits = digits)%%1)
+      if (q == 0) {
+        break
+      }
+    }
+    if (q > 0) {
+      stop("x cell sizes are not regular")
+    }
+  } else {
+    rx <- res[1]
+    test <- sum(round(dx/rx, digits = digits)%%1)
+    if (test > 0) {
+      stop("x cell sizes are not regular")
+    }
+  }
+
+  y <- sort(unique(df[, 2]))
+  dy <- y[-1] - y[-length(y)]
+  if (is.na(res[2])) {
+    ry <- min(dy)
+    for (i in 1:5) {
+      ry <- ry/i
+      q <- sum(round(dy/ry, digits = digits)%%1)
+      if (q == 0) {
+        break
+      }
+    }
+    if (q > 0) {
+      stop("y cell sizes are not regular")
+    }
+  } else {
+    ry <- res[2]
+    test <- sum(round(dy/ry, digits = digits)%%1)
+    if (test > 0) {
+      stop("y cell sizes are not regular")
+    }
+  }
+
+  return (TRUE)
+}

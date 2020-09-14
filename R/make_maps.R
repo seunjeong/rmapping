@@ -44,6 +44,9 @@ add_points_to_maps <- function (p, df_point, col_name_to_plot, col_name_for_size
 }
 
 if (FALSE) {
+  library (spatialwithr)
+  library (assertthat)
+
   df_ca = spatialwithr::get_us_map_high_res() %>% dplyr::filter (state_abbr == 'CA')
   p = ggplot() + geom_sf (data = df_ca, fill=NA)
 

@@ -1,10 +1,3 @@
-library (sf)
-library (ggplot2)
-library (tidyverse)
-library (rmapping)
-library (assertthat)
-library(RColorBrewer)
-
 #' Add points to the existing map.
 #'
 #' @param p ggplot2 object
@@ -21,6 +14,7 @@ library(RColorBrewer)
 #' @import tidyverse
 #' @import assertthat
 #' @examples
+#'
 add_points_to_maps <- function (p, df_point, col_name_to_plot, col_name_for_size = NULL, color_or_fill = 'fill',
                                 pt_size = 1.8, pt_stroke = 0.5)
 {

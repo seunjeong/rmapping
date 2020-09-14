@@ -43,5 +43,17 @@ add_points_to_maps <- function (p, df_point, col_name_to_plot, col_name_for_size
 
 }
 
+if (FALSE) {
+  library (spatialwithr)
+  library (assertthat)
+  library (sf)
+  library (tidyverse)
+  df_ca = spatialwithr::get_us_map_high_res() %>% dplyr::filter (state_abbr == 'CA')
+  p = ggplot() + geom_sf (data = df_ca, fill=NA)
 
+  # add
+  df = housing %>% dplyr::select (lon = longitude, lat = latitude, pop = population) %>%
+    dplyr::filter(pop > 5e3)
+  p_pts = add_points_to_maps (p, df, "pop", "pop") + scale_fill_distiller(palette = "Paired")
+}
 

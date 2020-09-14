@@ -41,7 +41,7 @@ add_points_to_maps <- function (p, df_point, col_name_to_plot, col_name_for_size
                               size = get(col_name_for_size)),
                               shape = 21)
         }
-    } else (color_or_fill == 'color') {
+    } else if (color_or_fill == 'color') {
         p = p + geom_point (data = df_point, aes (x = lon, y = lat, color = get(col_name_to_plot)))
     }
 

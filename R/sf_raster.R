@@ -50,6 +50,34 @@ crop_sf_obj_by_rect_bb <- function(sf_obj, xmin, xmax, ymin, ymax) {
   return (cropped)
 }
 
+#' Convert data frame with lon/lat to a raster object
+#'
+#' @param df data frame with columns of lon ant lat
+#'
+#' @return a raster object
+#' @export df_with_lonlat_to_raster
+#' @import raster
+#' @examples essentially same as convert_df_xyz_to_raster
+df_with_lonlat_to_raster <- function (df) {
+
+  col_names <- colnames(df)
+
+  assert_that ('lon' %in% col_names)
+  assert_that ('lat' %in% col_names)
+
+  coordinates(df) <- ~ lon + lat
+
+  # to SpatialPixelsDataFrame
+  gridded(df) <- TRUE
+
+  # to raster
+  r <- raster(df)
+
+  # projection
+  crs(r) <- "+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"
+
+  return(r)
+}
 
 #' Crop sf obj by polygon
 #'

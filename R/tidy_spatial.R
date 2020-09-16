@@ -46,7 +46,7 @@ list_to_pivot_longer <- function (li, names_of_list, col_name_to_add) {
 #' @param var_2_name variable name for the second dim, default to 'y'
 #'
 #' @return a data frame with xyz values
-#' @export
+#' @export matrix_to_xyz_df
 #' @import dplyr
 #' @import reshape2
 #' @examples

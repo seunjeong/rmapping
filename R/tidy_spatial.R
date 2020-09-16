@@ -38,18 +38,16 @@ list_to_pivot_longer <- function (li, names_of_list, col_name_to_add) {
 }
 
 
-#' Convert matrix with no column or row names to a data frame
+#' Convert 2-d matrix with no column or row names to a data frame.
 #'
 #' @param mat 2-d matrix with no column or row names
-#' @param var_1_name variable name for the first dim, default to 'x'
-#' @param var_2_name variable name for the second dim, default to 'y'#'
+#' @param var_1_name var_1_name variable name for the first dim, default to 'x'
+#' @param var_2_name var_2_name variable name for the second dim, default to 'y'
 #' @return a data frame with xyz values
 #' @export matrix_to_xyz_df
 #' @import dplyr
 #' @import reshape2
-#' @examples
-#'
-
+#' @examples foo = matrix_to_xyz_df (volcano)
 matrix_to_xyz_df <- function (mat, var_1_name = 'x', var_2_name = 'y') {
 
   # simply melt

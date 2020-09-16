@@ -49,10 +49,8 @@ list_to_pivot_longer <- function (li, names_of_list, col_name_to_add) {
 #' @export matrix_to_xyz_df
 #' @import dplyr
 #' @import reshape2
-#' @examples
-#' library(ggplot2)
-#' foo = matrix_to_xyz_df (volcano)
-#' p = ggplot() + geom_contour(data = foo, aes(x=x, y=y, z = z, color=..level..))
+#' @examples foo = matrix_to_xyz_df (volcano)
+# p = ggplot() + geom_contour(data = foo, aes(x=x, y=y, z = z, color=..level..))
 
 matrix_to_xyz_df <- function (mat, var_1_name = 'x', var_2_name = 'y') {
 
@@ -64,9 +62,3 @@ matrix_to_xyz_df <- function (mat, var_1_name = 'x', var_2_name = 'y') {
   return (df)
 }
 
-if (FALSE) {
-  library(ggplot2)
-  foo = matrix_to_xyz_df (volcano)
-  p = ggplot() + geom_contour(data = foo, aes(x=x, y=y, z = z, color=..level..))
-
-}

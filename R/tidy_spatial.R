@@ -1,4 +1,3 @@
-require(tidyverse)
 #' Make a long df from a list
 #'
 #' @param li a list with different lengths for each element of the list
@@ -7,7 +6,7 @@ require(tidyverse)
 #'
 #' @return
 #' @export list_to_pivot_longer
-#'
+#' @import tidyverse
 #' @examples
 
 list_to_pivot_longer <- function (li, names_of_list, col_name_to_add) {
@@ -49,8 +48,8 @@ list_to_pivot_longer <- function (li, names_of_list, col_name_to_add) {
 #' @export matrix_to_xyz_df
 #' @import dplyr
 #' @import reshape2
-#' @examples foo = matrix_to_xyz_df (volcano)
-# p = ggplot() + geom_contour(data = foo, aes(x=x, y=y, z = z, color=..level..))
+#' @examples
+#'
 
 matrix_to_xyz_df <- function (mat, var_1_name = 'x', var_2_name = 'y') {
 

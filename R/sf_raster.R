@@ -1,6 +1,24 @@
 library (sf)
 library (assertthat)
 
+#' Convert raster to data frame
+#'
+#' @param r input raster
+#' @param name_4_input_val the layer name in the input raster
+#' @param name_4_out_val  the column name in the output data frame
+#'
+#' @return
+#' @export raster_to_df
+#'
+#' @examples
+raster_to_df <-function (r, name_4_input_val, name_4_out_val = 'val') {
+  df_rast = rasterToPoints (r) %>%
+    as_tibble () %>%
+    #dplyr::rename (!!name_4_out_val := all_of (name_4_input_val))
+    dplyr::rename (!!name_4_out_val := !!name_4_input_val)
+  return (df_rast)
+}
+
 #' Get projection info from a sf object.
 #'
 #' @param sf_obj object to extract projection info from.

@@ -2,6 +2,7 @@
 
 export(add_area_km2_to_spatial_df)
 export(add_points_to_maps)
+export(add_state_to_df)
 export(check_if_regular_grid)
 export(convert_df_to_sf_obj)
 export(convert_df_xyz_to_raster)

@@ -60,6 +60,7 @@ add_state_to_df <- function (df, key_col) {
   df_sf = convert_df_to_sf_obj(df)
   us_state_high_res = USAboundaries::us_states(res = 'high') %>%
     sf::st_transform(crs = 4326)
+
   df_join = st_join(df_sf, us_state_high_res %>% dplyr::select(State = stusps))
   names (df_join)
   assert_that(nrow(df_join) == nrow(df_sf))
